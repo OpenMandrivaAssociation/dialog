@@ -47,7 +47,7 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 %defattr(-,root,root)
 %doc COPYING README samples
 %{_bindir}/dialog
-%{_mandir}/man1/dialog.1.bz2
-%{_mandir}/man3/dialog.3.bz2
+%{_mandir}/man1/dialog.*
+%{_mandir}/man3/dialog.*
 
 
