@@ -1,17 +1,18 @@
 %define name	cdialog
+%define fname	dialog
 %define version	1.1
-%define release	%mkrel 1
-%define datetag 20070227
+%define date	20070704
+%define release	%mkrel 1.%{date}.1
 
-Summary:	A utility for creating TTY dialog boxes.
+Summary:	A utility for creating TTY dialog boxes
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-License:	GPL
+License:	LGPLv2+
 URL:		http://invisible-island.net/dialog/
 Group:		Development/Other
 BuildRequires:	ncurses-devel
-Source:		dialog-%{version}-%{datetag}.tar.bz2
+Source:		ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
 Obsoletes:	dialog
 Provides:	dialog
 BuildRoot:	%{_tmppath}/%{name}-root
@@ -26,7 +27,7 @@ gauge.
 Install dialog if you would like to create TTY dialog boxes.
 
 %prep
-%setup -q -n dialog-%{version}-%{datetag}
+%setup -q -n %{fname}-%{version}-%{date}
 
 %configure
 
@@ -45,9 +46,7 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 %files
 %defattr(-,root,root)
-%doc COPYING README samples
-%{_bindir}/dialog
-%{_mandir}/man1/dialog.*
-%{_mandir}/man3/dialog.*
-
+%doc README samples
+%{_bindir}/%{fname}
+%{_mandir}/man1/%{fname}.*
 
