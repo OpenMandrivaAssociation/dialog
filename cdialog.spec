@@ -15,7 +15,6 @@ BuildRequires:	ncurses-devel
 Source:		ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
 Obsoletes:	dialog
 Provides:	dialog
-BuildRoot:	%{_tmppath}/%{name}-root
 
 %description
 Dialog is a utility that allows you to show dialog boxes (containing
