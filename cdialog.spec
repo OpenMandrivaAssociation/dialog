@@ -11,7 +11,7 @@ Release:	%{release}
 License:	LGPLv2+
 URL:		http://invisible-island.net/dialog/
 Group:		Development/Other
-BuildRequires:	ncurses-devel
+BuildRequires:	libncursesw-devel
 Source:		ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
 Obsoletes:	dialog
 Provides:	dialog
