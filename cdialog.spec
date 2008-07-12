@@ -1,7 +1,7 @@
 %define name	cdialog
 %define fname	dialog
 %define version	1.1
-%define date	20070704
+%define date	20080316
 %define release	%mkrel 1.%{date}.1
 
 Summary:	A utility for creating TTY dialog boxes
@@ -29,7 +29,9 @@ Install dialog if you would like to create TTY dialog boxes.
 %prep
 %setup -q -n %{fname}-%{version}-%{date}
 
-%configure
+%configure \
+	--enable-nls \
+	--with-ncursesw
 
 %build
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
@@ -40,11 +42,13 @@ mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_mandir}/man1
 %makeinstall
 
+%find_lang %{fname}
+
 %clean
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
 rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
-%files
+%files -f %{fname}.lang
 %defattr(-,root,root)
 %doc README samples
 %{_bindir}/%{fname}
