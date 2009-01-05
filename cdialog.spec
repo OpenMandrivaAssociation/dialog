@@ -1,13 +1,10 @@
-%define name	cdialog
 %define fname	dialog
-%define version	1.1
-%define date	20080316
-%define release	%mkrel 1.%{date}.1
+%define date	20080819
 
 Summary:	A utility for creating TTY dialog boxes
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		dialog
+Version:	1.1
+Release:	%mkrel 1.%{date}.1
 License:	LGPLv2+
 URL:		http://invisible-island.net/dialog/
 Group:		Development/Other
@@ -35,7 +32,7 @@ Install dialog if you would like to create TTY dialog boxes.
 
 %build
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
-%make OPTIM="$RPM_OPT_FLAGS"
+%make OPTIM="%{optflags}"
 
 %install
 mkdir -p %{buildroot}%{_bindir}
