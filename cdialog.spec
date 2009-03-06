@@ -4,7 +4,7 @@
 Summary:	A utility for creating TTY dialog boxes
 Name:		dialog
 Version:	1.1
-Release:	%mkrel 1.%{date}.1
+Release:	%mkrel 1.%{date}.2
 License:	LGPLv2+
 URL:		http://invisible-island.net/dialog/
 Group:		Development/Other
