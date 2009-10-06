@@ -4,7 +4,7 @@
 Summary:	A utility for creating TTY dialog boxes
 Name:		dialog
 Version:	1.1
-Release:	%mkrel 1.%{date}.3
+Release:	%mkrel 1.%{date}.4
 License:	LGPLv2+
 URL:		http://invisible-island.net/dialog/
 Group:		Development/Other
@@ -47,7 +47,7 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 %files -f %{fname}.lang
 %defattr(-,root,root)
-%doc README samples
+%doc README
 %{_bindir}/%{fname}
 %{_mandir}/man1/%{fname}.*
 
