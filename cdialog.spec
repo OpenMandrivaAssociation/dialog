@@ -2,7 +2,7 @@
 %define date	20080819
 
 Summary:	A utility for creating TTY dialog boxes
-Name:		dialog
+Name:		cdialog
 Version:	1.1
 Release:	%mkrel 1.%{date}.4
 License:	LGPLv2+
