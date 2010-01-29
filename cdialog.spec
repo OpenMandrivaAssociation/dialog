@@ -26,24 +26,20 @@ Install dialog if you would like to create TTY dialog boxes.
 %prep
 %setup -q -n %{fname}-%{version}-%{date}
 
-%configure \
+%build
+%configure2_5x \
 	--enable-nls \
 	--with-ncursesw
-
-%build
-[ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
-%make OPTIM="%{optflags}"
+%make
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_mandir}/man1
-%makeinstall
+rm -fr %buidlroot
+%makeinstall_std
 
 %find_lang %{fname}
 
 %clean
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
-rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 %files -f %{fname}.lang
 %defattr(-,root,root)
