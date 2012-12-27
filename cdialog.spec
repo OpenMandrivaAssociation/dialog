@@ -43,13 +43,10 @@ Install dialog if you would like to create TTY dialog boxes.
 %prep
 %setup -qn %{fname}-%{version}-%{date}
 
-%if %{with uclibc}
-mkdir .uclibc
-cp -a * .uclibc
-%endif
-
 %build
+CONFIGURE_TOP="$PWD"
 %if %{with uclibc}
+mkdir -p .uclibc
 pushd .uclibc
 %uclibc_configure \
 	--enable-nls \
@@ -60,19 +57,22 @@ sed -e 's#-L%{_libdir}##g' -e 's#-L/%{_lib}##g' -i makefile
 popd
 %endif
 
+mkdir .system
+pushd .system
 %configure2_5x	\
 	--enable-nls \
 	--with-ncursesw \
 	--disable-rpath-hack
 sed -e 's#-L%{_libdir}##g' -e 's#-L/%{_lib}##g' -i makefile
 %make
+popd
 
 %install
 %if %{with uclibc}
 %makeinstall_std -C .uclibc
 %endif
 
-%makeinstall_std
+%makeinstall_std -C .system
 
 %find_lang %{fname}
 
