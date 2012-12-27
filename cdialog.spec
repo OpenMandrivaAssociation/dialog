@@ -1,7 +1,7 @@
 %define fname	dialog
 %define date	20120706
 
-%bcond_with	uclibc
+%bcond_without	uclibc
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
@@ -55,18 +55,16 @@ pushd uclibc
 	--enable-nls \
 	--with-ncursesw \
 	--disable-rpath-hack
-sed -e 's#-L%{_libdir}##g' -e 's#-L/%{_lib}##g' -i makefile
 %make WHOLE_PROGRAM=1
 popd
 %endif
 
-mkdir system
+mkdir -p system
 pushd system
 %configure2_5x	\
 	--enable-nls \
 	--with-ncursesw \
 	--disable-rpath-hack
-sed -e 's#-L%{_libdir}##g' -e 's#-L/%{_lib}##g' -i makefile
 %make WHOLE_PROGRAM=1
 popd
 
