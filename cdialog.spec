@@ -1,17 +1,22 @@
 %define fname	dialog
 %define date	20120706
 
+%bcond_with	uclibc
+
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
 Version:	1.1
-Release:	1.%{date}.1
+Release:	1.%{date}.2
 License:	LGPLv2+
 URL:		http://invisible-island.net/dialog/
 Group:		Development/Other
-Source:		ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
+Source0:	ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
+Patch0:		dialog-1.1-20120706-dont-pass-link-directory.patch
 BuildRequires:	pkgconfig(ncursesw)
-Obsoletes:	dialog < %{version}-%{release}
-Provides:	dialog = %{version}-%{release}
+%if %{with uclibc}
+BuildRequires:	uClibc-devel
+%endif
+%rename		%{fname}
 
 %description
 Dialog is a utility that allows you to show dialog boxes (containing
@@ -22,16 +27,51 @@ gauge.
 
 Install dialog if you would like to create TTY dialog boxes.
 
+%package -n	uclibc-%{name}
+Summary:	A utility for creating TTY dialog boxes (uClibc build)
+Group:		Development/Other
+
+%description -n	uclibc-%{name}
+Dialog is a utility that allows you to show dialog boxes (containing
+questions or messages) in TTY (text mode) interfaces.  Dialog is called
+from within a shell script.  The following dialog boxes are implemented:
+yes/no, menu, input, message, text, info, checklist, radiolist, and
+gauge.  
+
+Install dialog if you would like to create TTY dialog boxes.
+
 %prep
-%setup -q -n %{fname}-%{version}-%{date}
+%setup -qn %{fname}-%{version}-%{date}
+
+%if %{with uclibc}
+mkdir .uclibc
+cp -a * .uclibc
+%endif
 
 %build
-%configure2_5x \
+%if %{with uclibc}
+pushd .uclibc
+%uclibc_configure \
 	--enable-nls \
-	--with-ncursesw
+	--with-ncursesw \
+	--disable-rpath-hack
+sed -e 's#-L%{_libdir}##g' -e 's#-L/%{_lib}##g' -i makefile
+%make localedir=%{_localedir}
+popd
+%endif
+
+%configure2_5x	\
+	--enable-nls \
+	--with-ncursesw \
+	--disable-rpath-hack
+sed -e 's#-L%{_libdir}##g' -e 's#-L/%{_lib}##g' -i makefile
 %make
 
 %install
+%if %{with uclibc}
+%makeinstall_std -C .uclibc
+%endif
+
 %makeinstall_std
 
 %find_lang %{fname}
@@ -41,8 +81,16 @@ Install dialog if you would like to create TTY dialog boxes.
 %{_bindir}/%{fname}
 %{_mandir}/man1/%{fname}.*
 
+%if %{with uclibc}
+%files -n uclibc-%{name}
+%{uclibc_root}%{_bindir}/%{fname}
+%endif
 
 %changelog
+* Thu Dec 27 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.1-1.20120706.1
+- do uclibc build
+- get rid of stupid rpath
+
 * Tue May 03 2011 Oden Eriksson <oeriksson@mandriva.com> 1.1-1.20100119.3mdv2011.0
 + Revision: 663357
 - mass rebuild
