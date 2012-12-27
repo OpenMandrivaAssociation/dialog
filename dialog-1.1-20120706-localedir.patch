@@ -1,0 +1,19 @@
+--- dialog-1.1-20120706/makefile.in.wholeprogram~	2012-12-27 05:06:13.833344752 +0100
++++ dialog-1.1-20120706/makefile.in	2012-12-27 05:11:03.471966107 +0100
+@@ -45,6 +45,7 @@ a		= @LIB_SUFFIX@
+ DESTDIR		=
+ 
+ bindir		= @bindir@
++datadir		= @datadir@
+ includedir	= @includedir@
+ libdir		= @libdir@
+ mandir		= @mandir@
+@@ -58,7 +59,7 @@ MAN1DIR		= $(MANDIR)/man1
+ MAN3DIR		= $(MANDIR)/man3
+ 
+ # see po/makefile
+-localedir       = $(prefix)/@DATADIRNAME@/locale
++localedir       = $(datadir)/locale
+ 
+ CFLAGS		= @CFLAGS@
+ CPPFLAGS	= -I. -I$(srcdir) @CPPFLAGS@ @DEFS@ -DLOCALEDIR=\"$(localedir)\"

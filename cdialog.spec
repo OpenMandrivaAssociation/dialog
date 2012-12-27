@@ -11,7 +11,7 @@ License:	LGPLv2+
 URL:		http://invisible-island.net/dialog/
 Group:		Development/Other
 Source0:	ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
-Patch0:		dialog-1.1-20120706-dont-pass-link-directory.patch
+Patch0:		dialog-1.1-20120706-localedir.patch
 BuildRequires:	pkgconfig(ncursesw)
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
@@ -42,12 +42,13 @@ Install dialog if you would like to create TTY dialog boxes.
 
 %prep
 %setup -qn %{fname}-%{version}-%{date}
+%patch0 -p1 -b .localedir~
 
 %build
 CONFIGURE_TOP="$PWD"
 %if %{with uclibc}
-mkdir -p .uclibc
-pushd .uclibc
+mkdir -p uclibc
+pushd uclibc
 %uclibc_configure \
 	--enable-nls \
 	--with-ncursesw \
@@ -57,8 +58,8 @@ sed -e 's#-L%{_libdir}##g' -e 's#-L/%{_lib}##g' -i makefile
 popd
 %endif
 
-mkdir .system
-pushd .system
+mkdir system
+pushd system
 %configure2_5x	\
 	--enable-nls \
 	--with-ncursesw \
@@ -69,10 +70,10 @@ popd
 
 %install
 %if %{with uclibc}
-%makeinstall_std -C .uclibc
+%makeinstall_std -C uclibc
 %endif
 
-%makeinstall_std -C .system
+%makeinstall_std -C system
 
 %find_lang %{fname}
 
@@ -87,7 +88,7 @@ popd
 %endif
 
 %changelog
-* Thu Dec 27 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.1-1.20120706.1
+* Thu Dec 27 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.1-1.20120706.2
 - do uclibc build
 - get rid of stupid rpath
 
