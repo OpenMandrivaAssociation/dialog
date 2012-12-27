@@ -12,6 +12,7 @@ URL:		http://invisible-island.net/dialog/
 Group:		Development/Other
 Source0:	ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
 Patch0:		dialog-1.1-20120706-localedir.patch
+Patch1:		dialog-1.1-20120706-wholeprogram.patch
 BuildRequires:	pkgconfig(ncursesw)
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
@@ -43,6 +44,7 @@ Install dialog if you would like to create TTY dialog boxes.
 %prep
 %setup -qn %{fname}-%{version}-%{date}
 %patch0 -p1 -b .localedir~
+%patch1 -p1 -b .whole_program~
 
 %build
 CONFIGURE_TOP="$PWD"
@@ -54,7 +56,7 @@ pushd uclibc
 	--with-ncursesw \
 	--disable-rpath-hack
 sed -e 's#-L%{_libdir}##g' -e 's#-L/%{_lib}##g' -i makefile
-%make localedir=%{_localedir}
+%make WHOLE_PROGRAM=1
 popd
 %endif
 
@@ -65,15 +67,15 @@ pushd system
 	--with-ncursesw \
 	--disable-rpath-hack
 sed -e 's#-L%{_libdir}##g' -e 's#-L/%{_lib}##g' -i makefile
-%make
+%make WHOLE_PROGRAM=1
 popd
 
 %install
 %if %{with uclibc}
-%makeinstall_std -C uclibc
+%makeinstall_std -C uclibc WHOLE_PROGRAM=1
 %endif
 
-%makeinstall_std -C system
+%makeinstall_std -C system WHOLE_PROGRAM=1
 
 %find_lang %{fname}
 
@@ -89,6 +91,8 @@ popd
 
 %changelog
 * Thu Dec 27 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.1-1.20120706.2
+- add support for compiling with -fwhole-program (P1)
+- rely on --datadir for locale (P0)
 - do uclibc build
 - get rid of stupid rpath
 
