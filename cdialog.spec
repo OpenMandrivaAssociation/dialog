@@ -1,12 +1,12 @@
-%define fname	dialog
-%define date	20120706
+%define fname dialog
+%define date 20120706
 
 %bcond_without	uclibc
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
 Version:	1.1
-Release:	1.%{date}.3
+Release:	1.%{date}.4
 License:	LGPLv2+
 Group:		Development/Other
 Url:		http://invisible-island.net/dialog/
@@ -67,25 +67,25 @@ pushd uclibc
         CXX="%{uclibc_cxx}" \
         CFLAGS="%{uclibc_cflags}" \
         CXXFLAGS="%{uclibc_cxxflags}"
-%make WHOLE_PROGRAM=1
+%make WHOLE_PROGRAM=0
 popd
 %endif
 
 mkdir -p system
 pushd system
-%configure2_5x	\
+%configure	\
 	--enable-nls \
 	--with-ncursesw \
 	--disable-rpath-hack
-%make WHOLE_PROGRAM=1
+%make WHOLE_PROGRAM=0
 popd
 
 %install
 %if %{with uclibc}
-%makeinstall_std -C uclibc WHOLE_PROGRAM=1
+%makeinstall_std -C uclibc WHOLE_PROGRAM=0
 %endif
 
-%makeinstall_std -C system WHOLE_PROGRAM=1
+%makeinstall_std -C system WHOLE_PROGRAM=0
 
 %find_lang %{fname}
 
