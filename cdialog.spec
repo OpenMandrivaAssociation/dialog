@@ -45,7 +45,6 @@ Install dialog if you would like to create TTY dialog boxes.
 %prep
 %setup -qn %{fname}-%{version}-%{date}
 %patch0 -p1 -b .localedir~
-%patch1 -p1 -b .whole_program~
 
 %build
 CONFIGURE_TOP="$PWD"
@@ -67,7 +66,7 @@ pushd uclibc
         CXX="%{uclibc_cxx}" \
         CFLAGS="%{uclibc_cflags}" \
         CXXFLAGS="%{uclibc_cxxflags}"
-%make WHOLE_PROGRAM=0
+%make
 popd
 %endif
 
@@ -77,15 +76,15 @@ pushd system
 	--enable-nls \
 	--with-ncursesw \
 	--disable-rpath-hack
-%make WHOLE_PROGRAM=0
+%make
 popd
 
 %install
 %if %{with uclibc}
-%makeinstall_std -C uclibc WHOLE_PROGRAM=0
+%makeinstall_std -C uclibc
 %endif
 
-%makeinstall_std -C system WHOLE_PROGRAM=0
+%makeinstall_std -C system
 
 %find_lang %{fname}
 
