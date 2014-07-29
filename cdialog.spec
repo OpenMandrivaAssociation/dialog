@@ -1,12 +1,12 @@
 %define fname dialog
-%define date 20120706
+%define date 20140219
 
-%bcond_without	uclibc
+%bcond_without uclibc
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
-Version:	1.1
-Release:	1.%{date}.4
+Version:	1.2
+Release:	1.%{date}.1
 License:	LGPLv2+
 Group:		Development/Other
 Url:		http://invisible-island.net/dialog/
