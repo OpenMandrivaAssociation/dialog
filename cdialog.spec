@@ -1,5 +1,5 @@
 %define fname dialog
-%define date 20140219
+%define date 20140910
 
 %bcond_without uclibc
 
@@ -11,9 +11,6 @@ License:	LGPLv2+
 Group:		Development/Other
 Url:		http://invisible-island.net/dialog/
 Source0:	ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
-Patch0:		dialog-1.1-20120706-localedir.patch
-Patch1:		dialog-1.1-20120706-wholeprogram.patch
-
 BuildRequires:	pkgconfig(ncursesw)
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
@@ -44,7 +41,7 @@ Install dialog if you would like to create TTY dialog boxes.
 
 %prep
 %setup -qn %{fname}-%{version}-%{date}
-%patch0 -p1 -b .localedir~
+%apply_patches
 
 %build
 CONFIGURE_TOP="$PWD"
@@ -82,9 +79,11 @@ popd
 %install
 %if %{with uclibc}
 %makeinstall_std -C uclibc
+rm -f %{buildroot}/%{uclibc_root}/%{_libdir}/*.a
 %endif
 
 %makeinstall_std -C system
+rm -f %{buildroot}%{_libdir}/*.a
 
 %find_lang %{fname}
 
@@ -97,4 +96,3 @@ popd
 %files -n uclibc-%{name}
 %{uclibc_root}%{_bindir}/%{fname}
 %endif
-
