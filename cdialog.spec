@@ -1,5 +1,5 @@
 %define fname dialog
-%define date 20140910
+%define date 20150125
 
 %bcond_without uclibc
 
