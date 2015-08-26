@@ -1,7 +1,7 @@
 %define fname dialog
 %define date 20150125
 
-%bcond_without uclibc
+%bcond_with uclibc
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
