@@ -6,7 +6,7 @@
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
 Version:	1.2
-Release:	1.%{date}.1
+Release:	1.%{date}.2
 License:	LGPLv2+
 Group:		Development/Other
 Url:		http://invisible-island.net/dialog/
@@ -22,10 +22,11 @@ Dialog is a utility that allows you to show dialog boxes (containing
 questions or messages) in TTY (text mode) interfaces.  Dialog is called
 from within a shell script.  The following dialog boxes are implemented:
 yes/no, menu, input, message, text, info, checklist, radiolist, and
-gauge.  
+gauge.
 
 Install dialog if you would like to create TTY dialog boxes.
 
+%if %{with uclibc}
 %package -n	uclibc-%{name}
 Summary:	A utility for creating TTY dialog boxes (uClibc build)
 Group:		Development/Other
@@ -35,9 +36,10 @@ Dialog is a utility that allows you to show dialog boxes (containing
 questions or messages) in TTY (text mode) interfaces.  Dialog is called
 from within a shell script.  The following dialog boxes are implemented:
 yes/no, menu, input, message, text, info, checklist, radiolist, and
-gauge.  
+gauge.
 
 Install dialog if you would like to create TTY dialog boxes.
+%endif
 
 %prep
 %setup -qn %{fname}-%{version}-%{date}
