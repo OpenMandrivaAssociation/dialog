@@ -1,0 +1,24 @@
+diff -Naur dialog-1.2-20150920/aclocal.m4 dialog-1.2-20150920.tpg/aclocal.m4
+--- dialog-1.2-20150920/aclocal.m4	2015-09-20 22:31:10.000000000 +0000
++++ dialog-1.2-20150920.tpg/aclocal.m4	2016-01-25 23:55:04.539460710 +0000
+@@ -4764,7 +4764,7 @@
+ LIBTOOL=
+ ])
+ # common library maintenance symbols that are convenient for libtool scripts:
+-LIB_CREATE='${AR} -cr'
++LIB_CREATE='${AR}'
+ LIB_OBJECT='${OBJECTS}'
+ LIB_SUFFIX=.a
+ LIB_PREP="$RANLIB"
+diff -Naur dialog-1.2-20150920/configure dialog-1.2-20150920.tpg/configure
+--- dialog-1.2-20150920/configure	2015-09-20 22:31:33.000000000 +0000
++++ dialog-1.2-20150920.tpg/configure	2016-01-25 23:55:31.556177462 +0000
+@@ -9747,7 +9747,7 @@
+ LIBTOOL=
+ 
+ # common library maintenance symbols that are convenient for libtool scripts:
+-LIB_CREATE='${AR} -cr'
++LIB_CREATE='${AR}'
+ LIB_OBJECT='${OBJECTS}'
+ LIB_SUFFIX=.a
+ LIB_PREP="$RANLIB"

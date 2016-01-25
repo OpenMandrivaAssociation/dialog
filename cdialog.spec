@@ -11,6 +11,7 @@ License:	LGPLv2+
 Group:		Development/Other
 Url:		http://invisible-island.net/dialog/
 Source0:	ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
+Patch0:		dialog-1.2-20150920-fix-linking-with-llvm-ar.patch
 BuildRequires:	pkgconfig(ncursesw)
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
