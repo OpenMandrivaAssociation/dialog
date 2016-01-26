@@ -6,7 +6,7 @@ diff -Naur dialog-1.2-20150920/aclocal.m4 dialog-1.2-20150920.tpg/aclocal.m4
  ])
  # common library maintenance symbols that are convenient for libtool scripts:
 -LIB_CREATE='${AR} -cr'
-+LIB_CREATE='${AR}'
++LIB_CREATE='${AR} cr'
  LIB_OBJECT='${OBJECTS}'
  LIB_SUFFIX=.a
  LIB_PREP="$RANLIB"
@@ -18,7 +18,7 @@ diff -Naur dialog-1.2-20150920/configure dialog-1.2-20150920.tpg/configure
  
  # common library maintenance symbols that are convenient for libtool scripts:
 -LIB_CREATE='${AR} -cr'
-+LIB_CREATE='${AR}'
++LIB_CREATE='${AR} cr'
  LIB_OBJECT='${OBJECTS}'
  LIB_SUFFIX=.a
  LIB_PREP="$RANLIB"
