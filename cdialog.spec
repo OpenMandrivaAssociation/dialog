@@ -3,8 +3,8 @@
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
-Version:	1.2
-Release:	1.%{date}.4
+Version:	1.3
+Release:	0.%{date}.1
 License:	LGPLv2+
 Group:		Development/Other
 Url:		http://invisible-island.net/dialog/
