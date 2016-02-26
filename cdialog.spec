@@ -35,8 +35,8 @@ Install dialog if you would like to create TTY dialog boxes.
 %make
 
 %install
+%makeinstall_std
 
-%makeinstall_std -C system
 rm -f %{buildroot}%{_libdir}/*.a
 
 %find_lang %{fname}
