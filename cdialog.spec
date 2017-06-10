@@ -1,5 +1,5 @@
 %define fname dialog
-%define date 20170131
+%define date 20170509
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
