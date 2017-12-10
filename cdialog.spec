@@ -1,5 +1,5 @@
 %define fname dialog
-%define date 20170509
+%define date 20171209
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
@@ -8,7 +8,7 @@ Release:	0.%{date}.1
 License:	LGPLv2+
 Group:		Development/Other
 Url:		http://invisible-island.net/dialog/
-Source0:	ftp://invisible-island.net/dialog/%{fname}-%{version}-%{date}.tgz
+Source0:	http://invisible-island.net/datafiles/release/%{fname}-%{version}-%{date}.tgz
 Patch0:		dialog-1.2-20150920-fix-linking-with-llvm-ar.patch
 BuildRequires:	pkgconfig(ncursesw)
 %rename		%{fname}
