@@ -30,8 +30,12 @@ Install dialog if you would like to create TTY dialog boxes.
 %configure \
     --enable-nls \
     --with-ncursesw \
-    --disable-rpath-hack
-
+    --disable-rpath-hack || :
+if ! [ -e makefile ]; then
+	echo "Configure failed:"
+	cat config.log
+	exit 1
+fi
 %make
 
 %install
