@@ -1,5 +1,5 @@
 %define fname dialog
-%define date 20180621
+%define date 20181107
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
@@ -36,10 +36,11 @@ if ! [ -e makefile ]; then
 	cat config.log
 	exit 1
 fi
-%make
+
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 rm -f %{buildroot}%{_libdir}/*.a
 
