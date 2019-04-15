@@ -1,5 +1,5 @@
 %define fname dialog
-%define date 20181107
+%define date 20190303
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
@@ -23,8 +23,7 @@ gauge.
 Install dialog if you would like to create TTY dialog boxes.
 
 %prep
-%setup -qn %{fname}-%{version}-%{date}
-%apply_patches
+%autosetup -n %{fname}-%{version}-%{date} -p1
 
 %build
 %configure \
@@ -32,9 +31,9 @@ Install dialog if you would like to create TTY dialog boxes.
     --with-ncursesw \
     --disable-rpath-hack || :
 if ! [ -e makefile ]; then
-	echo "Configure failed:"
-	cat config.log
-	exit 1
+    printf '%s\n' "Configure failed:"
+    cat config.log
+    exit 1
 fi
 
 %make_build
