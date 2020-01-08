@@ -1,5 +1,6 @@
 %define fname dialog
-%define date 20190808
+%define date 20191210
+%global optflags %{optflags} -Oz
 
 Summary:	A utility for creating TTY dialog boxes
 Name:		cdialog
