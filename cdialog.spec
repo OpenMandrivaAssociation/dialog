@@ -1,5 +1,5 @@
 %define fname dialog
-%define date 20210324
+%define date 20210621
 %global optflags %{optflags} -Oz
 
 Summary:	A utility for creating TTY dialog boxes
@@ -49,4 +49,4 @@ rm -f %{buildroot}%{_libdir}/*.a
 %files -f %{fname}.lang
 %doc README
 %{_bindir}/%{fname}
-%{_mandir}/man1/%{fname}.*
+%doc %{_mandir}/man1/%{fname}.*
