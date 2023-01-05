@@ -1,5 +1,5 @@
 %define fname dialog
-%define date 20220414
+%define date 20221229
 %global optflags %{optflags} -Oz
 
 Summary:	A utility for creating TTY dialog boxes
