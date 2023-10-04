@@ -1,18 +1,17 @@
-%define fname dialog
-%define date 20230209
+%define date 20231002
 %global optflags %{optflags} -Oz
 
 Summary:	A utility for creating TTY dialog boxes
-Name:		cdialog
+Name:		dialog
 Version:	1.3
 Release:	0.%{date}.1
 License:	LGPLv2+
 Group:		Development/Other
 Url:		http://invisible-island.net/dialog/
-Source0:	http://invisible-island.net/datafiles/release/%{fname}-%{version}-%{date}.tgz
+Source0:	http://invisible-island.net/archives/dialog/%{name}-%{version}-%{date}.tgz
 Patch0:		dialog-1.2-20150920-fix-linking-with-llvm-ar.patch
 BuildRequires:	pkgconfig(ncursesw)
-%rename		%{fname}
+%rename		cdialog
 
 %description
 Dialog is a utility that allows you to show dialog boxes (containing
@@ -24,7 +23,7 @@ gauge.
 Install dialog if you would like to create TTY dialog boxes.
 
 %prep
-%autosetup -n %{fname}-%{version}-%{date} -p1
+%autosetup -n %{name}-%{version}-%{date} -p1
 
 %build
 %configure \
@@ -44,9 +43,9 @@ fi
 
 rm -f %{buildroot}%{_libdir}/*.a
 
-%find_lang %{fname}
+%find_lang %{name}
 
-%files -f %{fname}.lang
+%files -f %{name}.lang
 %doc README
-%{_bindir}/%{fname}
-%doc %{_mandir}/man1/%{fname}.*
+%{_bindir}/%{name}
+%doc %{_mandir}/man1/%{name}.*
