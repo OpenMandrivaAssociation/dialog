@@ -1,4 +1,4 @@
-%define date 20231002
+%define date 20240307
 %global optflags %{optflags} -Oz
 
 Summary:	A utility for creating TTY dialog boxes
