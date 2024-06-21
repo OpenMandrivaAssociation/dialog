@@ -12,6 +12,7 @@ Source0:	http://invisible-island.net/archives/dialog/%{name}-%{version}-%{date}.
 Patch0:		dialog-1.2-20150920-fix-linking-with-llvm-ar.patch
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	gettext
+BuildRequires:	locales-extra-charsets
 %rename		cdialog
 
 %description
