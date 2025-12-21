@@ -10,6 +10,11 @@ Group:		Development/Other
 Url:		https://invisible-island.net/dialog/
 Source0:	http://invisible-island.net/archives/dialog/%{name}-%{version}-%{date}.tgz
 Patch0:		dialog-1.2-20150920-fix-linking-with-llvm-ar.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	gettext
 BuildRequires:	locales-extra-charsets
